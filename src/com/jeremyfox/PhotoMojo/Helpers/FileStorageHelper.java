@@ -15,7 +15,9 @@ import java.io.*;
  */
 public abstract class FileStorageHelper {
 
-    private static final String FILE_NAME = "PhotoMojoPicture.jpg";
+    //Edited code for SENG 401 Project///////////////////////////////////////
+	// change type from private to protected
+    protected static final String FILE_NAME = "PhotoMojoPicture.jpg";
 
     /**
      * Gets album name.

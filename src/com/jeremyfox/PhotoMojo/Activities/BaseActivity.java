@@ -18,6 +18,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import com.jeremyfox.PhotoMojo.Helpers.FileStorageHelper;
+import com.jeremyfox.PhotoMojo.Helpers.FileStorageHelperChild;
+import com.jeremyfox.PhotoMojo.Helpers.FileStorageHelperDecorator;
+import com.jeremyfox.PhotoMojo.Helpers.FilesizeHelper;
+import com.jeremyfox.PhotoMojo.Helpers.FiletypeHelper;
 import com.jeremyfox.PhotoMojo.Helpers.NotificationHelper;
 import com.jeremyfox.PhotoMojo.Helpers.PhotoEditorHelper;
 import com.jeremyfox.PhotoMojo.R;
@@ -150,7 +154,15 @@ public class BaseActivity extends Activity {
 		/* Associate the Bitmap to the ImageView */
         mImageView.setImageBitmap(mImageBitmap);
         mImageView.setVisibility(View.VISIBLE);
-
+        
+        //Edited code for SENG 401 Project///////////////////////////////////////
+      	//Add decorator file size and type information to the FileStorageHelper class
+        FileStorageHelper Fsc=new FileStorageHelperChild();
+        Fsc=new FiletypeHelper(Fsc);
+        Fsc=new FilesizeHelper(Fsc);
+        Fsc.todo();
+        
+        
         FileStorageHelper.saveLatestPhoto(this, mImageBitmap);
     }
 
