@@ -57,10 +57,11 @@ public class BaseActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GenrateAlbumDirFactory albumFactory = new GenrateAlbumDirFactory();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-            mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
+            mAlbumStorageDirFactory = albumFactory.getAlbumDirFactory("froyo");
         } else {
-            mAlbumStorageDirFactory = new BaseAlbumDirFactory();
+            mAlbumStorageDirFactory = albumFactory.getAlbumDirFactory("base");
         }
     }
 
@@ -154,15 +155,15 @@ public class BaseActivity extends Activity {
 		/* Associate the Bitmap to the ImageView */
         mImageView.setImageBitmap(mImageBitmap);
         mImageView.setVisibility(View.VISIBLE);
-        
+
         //Edited code for SENG 401 Project///////////////////////////////////////
       	//Add decorator file size and type information to the FileStorageHelper class
         FileStorageHelper Fsc=new FileStorageHelperChild();
         Fsc=new FiletypeHelper(Fsc);
         Fsc=new FilesizeHelper(Fsc);
         Fsc.todo();
-        
-        
+
+
         FileStorageHelper.saveLatestPhoto(this, mImageBitmap);
     }
 
